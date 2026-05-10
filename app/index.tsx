@@ -7,10 +7,10 @@ import {
   Platform,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
@@ -33,37 +33,34 @@ const HomeScreen = () => {
 
         <View style={styles.form}>
           <Text style={styles.label}>Email</Text>
-          <TextInput
-            mode="outlined"
-            placeholder="elementary221b@gmail.com"
-            value={email}
-            onChangeText={setEmail}
-            style={styles.input}
-            outlineColor="#D7EBCF"
-            activeOutlineColor="#6FC22A"
-            left={<TextInput.Icon icon={() => <MaterialCommunityIcons name="email-outline" size={20} />} />}
-            right={null}
-            autoCapitalize="none"
-            keyboardType="email-address"
-          />
+              <View style={[styles.inputContainer, styles.inputShadow]}>
+                <MaterialCommunityIcons name="email-outline" size={20} color="#6B6B6B" style={styles.inputIcon} />
+                <TextInput
+                  placeholder="Enter your email..."
+                  value={email}
+                  onChangeText={setEmail}
+                  style={styles.textInput}
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  placeholderTextColor="#9A9A9A"
+                />
+              </View>
 
           <Text style={[styles.label, { marginTop: 8 }]}>Password</Text>
-          <TextInput
-            mode="outlined"
-            placeholder="Enter your password..."
-            value={password}
-            onChangeText={setPassword}
-            style={styles.input}
-            outlineColor="#F1F1F1"
-            activeOutlineColor="#6FC22A"
-            secureTextEntry={secure}
-            left={<TextInput.Icon icon={() => <MaterialCommunityIcons name="lock-outline" size={20} />} />}
-            right={<TextInput.Icon icon={() => (
-              <TouchableOpacity onPress={() => setSecure(!secure)} style={styles.iconTouchable}>
-                <MaterialCommunityIcons name={secure ? 'eye-off-outline' : 'eye-outline'} size={20} />
-              </TouchableOpacity>
-            )} />}
-          />
+              <View style={[styles.inputContainer, styles.inputShadow]}>
+                <MaterialCommunityIcons name="lock-outline" size={20} color="#6B6B6B" style={styles.inputIcon} />
+                <TextInput
+                  placeholder="Enter your password..."
+                  value={password}
+                  onChangeText={setPassword}
+                  style={styles.textInput}
+                  secureTextEntry={secure}
+                  placeholderTextColor="#9A9A9A"
+                />
+                <TouchableOpacity onPress={() => setSecure(!secure)} style={styles.eyeButton}>
+                  <MaterialCommunityIcons name={secure ? 'eye-off-outline' : 'eye-outline'} size={20} color="#6B6B6B" />
+                </TouchableOpacity>
+              </View>
 
           <TouchableOpacity style={styles.signInButton} activeOpacity={0.85}>
             <Text style={styles.signInText}>Sign In</Text>
@@ -141,6 +138,36 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 12,
     height: 52,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    height: 52,
+    marginBottom: 6,
+    borderWidth: 1,
+    borderColor: '#EDEDED',
+  },
+  inputShadow: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  inputIcon: {
+    marginRight: 8,
+  },
+  textInput: {
+    flex: 1,
+    fontSize: 15,
+    color: '#222',
+    paddingVertical: 0,
+  },
+  eyeButton: {
+    padding: 6,
   },
   iconTouchable: {
     padding: 6,
