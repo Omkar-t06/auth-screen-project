@@ -1,3 +1,4 @@
+# Notes App project link: https://github.com/Omkar-t06/chai-notes
 # Auth Screen Project
 
 Recreated a Dribbble-inspired mobile authentication UI using React Native and Expo, implemented with only core React Native components.
